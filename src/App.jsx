@@ -2,53 +2,58 @@ import { useState } from "react"
 
 function App() {
 
-  const [ habits, setHabits ] = useState([])
-  const [ newHabit, setNewHabit ] = useState('')
-
+  const [habits, setHabits ] = useState([])
+  const [newHabit, setNewHabit ] = useState('')
+  
   const addHabit = (title) => {
     setHabits((currentHabits) => {
       return [
-        ...currentHabits, {id: crypto.randomUUID(), title}
+        ...currentHabits, { id:crypto.randomUUID(), title}
       ]
     })
-    console.log(newHabit)
-    
   }
-  const submitHandler = (e) => {
-    e.preventDefault()
-    if(newHabit === "") return
-    addHabit(newHabit)
-    setNewHabit("")
-}
 
-  const changeHandler = (e) => {
-    setNewHabit(e.target. value)
+  const submitHandler =(e) => {
+    e.preventDefault()
+    if(newHabit === '')return
+    addHabit(newHabit)
+    setNewHabit('')
+  }
+
+  const changeHandler =(e) => {
+    setNewHabit(e.target.value)
   }
 
   return (
     <>
-      <form onSubmit={submitHandler}>
-        <label>Enter a Habit:
-          <input 
-          type="text"
-          onChange={changeHandler} 
-          value={newHabit}
-          id="habit"/>
-        </label>
-        <button>Add</button>
-      </form>
-      <ul>
-        {habits.map((habit, index) => {
-          return(
-            <li key={index}>
-            {habit.title}
-          </li>
-          )
-          
-        })}
-      </ul>
+      <div className=" container mt-5">
+        <form onSubmit={submitHandler}>
+          <div className="form-group">
+          <label className="form-label">Add Habit:
+            <input 
+              type="text"
+              value={newHabit}
+              onChange={changeHandler}
+              id="habit"
+              className="form-control"
+            />
+          </label>
+          <button className="ms-4">Add</button>
+          </div>
+        </form>
+        <ul>
+          {habits.map((habit, index) => {
+            return(
+              <li key={index}>
+                {habit.title}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </>
   )
 }
 
 export default App
+
