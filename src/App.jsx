@@ -6,23 +6,38 @@ function App() {
   const [newHabit, setNewHabit] = useState('')
 
   const addHabit = (title) => {
-    setHabits((currentHabits) => {
-      return [
-        ...currentHabits, { id: crypto.randomUUID(), title}
-      ]
-    })
+    setHabits((currentHabits) => [
+      ...currentHabits, { id: crypto.randomUUID(), title, complete: false}
+    ])
   }
 
-  const submitHandler =(e) => {
+  const submitHandler = (e) => {
     e.preventDefault()
     if(newHabit === '')return
     addHabit(newHabit)
     setNewHabit('')
   }
 
-  const changeHandler = (e) => {
+
+
+  const changeHandler =(e) => {
     setNewHabit(e.target.value)
   }
+
+  const toggleHabit =(id, completed) => {
+    setHabits((currentHabits) => (
+      currentHabits.map((habit) => {
+        if(habit.id === id){
+          return {
+            ...habit, completed
+          }
+        }
+        return habit
+      })
+    
+  ))
+}
+
 
   const deleteHabit = (id) => {
     setHabits((currentHabits) => {
@@ -32,6 +47,7 @@ function App() {
     })
   }
 
+  
   return (
     <>
       <div className=" container mt-5">
@@ -55,7 +71,9 @@ function App() {
             {habits.map((habit) => {
               return(
                 <li key={habit.id}>
-                  {habit.title}
+                  <label>{habit.title}
+                    <input type="checkbox" checked={habit.completed} onChange={(e) => toggleHabit(habit.id, e.target.checked)}/>
+                  </label>
                   <button className="ms-2 rounded bg-danger" onClick={() => deleteHabit(habit.id)}>Delete</button>
                 </li>
               )
@@ -68,4 +86,5 @@ function App() {
 }
 
 export default App
+
 

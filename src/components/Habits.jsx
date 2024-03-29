@@ -24,6 +24,26 @@
 //   const changeHandler = (e) => {
 //     setNewHabit(e.target. value)
 //   }
+// const deleteHabit = (id) => {
+//     setHabits((currentHabits) => {
+//       return(
+//         currentHabits.filter(habit => habit.id != id)
+//       )
+//     })
+//   }
+
+//   const toggleHabit = (id, completed) => {
+//     setHabits((currentHabits) => {
+//       return(
+//         currentHabits.map(habit => {
+//           if(habit.id === id){
+//             return {...habit, completed}
+//           }
+//             return habit
+//         })
+//       )
+//     })
+//   }
 
 //   return (
 //     <>
