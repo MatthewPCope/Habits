@@ -4,3 +4,9 @@
   display: flex;
   justify-content: center;
 }
+
+.bg{
+  background-image: url(assets/background_image.webp);
+  
+  background-size: cover;
+}
