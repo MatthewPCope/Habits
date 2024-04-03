@@ -7,8 +7,9 @@ function App() {
 
   const addHabit = (title) => {
     setHabits((currentHabits) => [
-      ...currentHabits, { id: crypto.randomUUID(), title, complete: false}
+      ...currentHabits, {id: crypto.randomUUID(), title, completed: false}
     ])
+
   }
 
   const submitHandler = (e) => {
@@ -18,36 +19,27 @@ function App() {
     setNewHabit('')
   }
 
-
-
-  const changeHandler =(e) => {
+  const changeHandler = (e) => {
     setNewHabit(e.target.value)
   }
 
-  const toggleHabit =(id, completed) => {
+  const toggleHabit = (id, completed) => {
     setHabits((currentHabits) => (
       currentHabits.map((habit) => {
         if(habit.id === id){
-          return {
-            ...habit, completed
-          }
+          return{...habit, completed}
         }
         return habit
       })
-    
-  ))
-}
-
-
+    ))
+  }
+ 
   const deleteHabit = (id) => {
-    setHabits((currentHabits) => {
-      return(
-        currentHabits.filter(habit => habit.id != id)
-      )
-    })
+    setHabits((currentHabits) => (
+      currentHabits.filter(habit => habit.id != id)
+    ))
   }
 
-  
   return (
     <>
       <div className=" container mt-5">
