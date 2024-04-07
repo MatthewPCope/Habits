@@ -19,8 +19,8 @@ function App() {
     setNewHabit('')
   }
 
-  const changeHandler = (e) => {
-    setNewHabit(e.target.value)
+  const changeHandler =(e) => {
+    setHabits(e.target.value)
   }
 
   const toggleHabit = (id, completed) => {
